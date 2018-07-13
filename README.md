@@ -4,6 +4,12 @@ Minitouch provides a socket interface for triggering multitouch events and gestu
 
 It works especially well with HTML5 multitouch events, and unlike the Android [monkey](http://developer.android.com/tools/help/monkey.html) tool, allows you to access the whole screen (including any software buttons).
 
+## Theory
+Exposes a socket interfae, translates commands to raw **Linux kernel touch events**([Protocol](https://www.kernel.org/doc/Documentation/input/multi-touch-protocol.txt)). Additional requirements on some devices, e.g. Xiaomi. Fixed >90% of the non-functional devices we had.
+
+Monkey is far from reliable. Turns out that adb shell use belongs to the input group. The input group has r/w access to /dev/input/event*. One of those input devices is the touchscreen events. Read events and describe devices with the built-in getevent command.
+
+
 ## Building
 
 Building requires [NDK](https://developer.android.com/tools/sdk/ndk/index.html), and is known to work with at least with NDK Revision 10 (July 2014). *Note that NDK 15 no longer supports anything below Android SDK level 14, meaning that binaries may or may not work on older devices (e.g. Android 2.3).*
